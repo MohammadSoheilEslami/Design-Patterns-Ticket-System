@@ -5,14 +5,10 @@ public class InProgressState implements TicketState {
     public void handle(TicketService context, String channel, String type) {
         System.out.println("Working on ticket");
 
-        // منطق پاسخ‌دهی
-        if (type.equals("BUG")) {
-            System.out.println("Sending bug response");
-        } else {
-            System.out.println("Sending generic response");
-        }
+        // استفاده از استراتژی برای چاپ پیام پاسخ
+        context.getStrategy().reply();
 
-        // تغییر وضعیت به مرحله بعد (Resolved)
+        // تغییر وضعیت به مرحله بعد
         context.setState(new ResolvedState());
     }
 }
